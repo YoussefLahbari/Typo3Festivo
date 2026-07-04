@@ -1,0 +1,5 @@
+plugin.festivo_contentelements.view {
+    layoutRootPath = EXT:festivo/Resources/Private/Layouts/ContentElement/
+    partialRootPath = EXT:festivo/Resources/Private/Partials/ContentElement/
+    templateRootPath = EXT:festivo/Resources/Private/Templates/ContentElement/
+}

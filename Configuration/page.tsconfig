@@ -1,0 +1,2 @@
+@import 'EXT:festivo/Configuration/PageTsConfig/Page/Mod/WebLayout/BackendLayouts.tsconfig'
+@import 'EXT:festivo/Configuration/PageTsConfig/Page/ContentElements/*.tsconfig'

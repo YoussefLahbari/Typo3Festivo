@@ -1,0 +1,16 @@
+@import 'EXT:festivo/Configuration/TypoScript/ContentElement/constants.typoscript'
+config {
+    compressCss = 1
+    compressJs = 1
+    concatenateCss = 1
+    concatenateJs = 1
+}
+
+page {
+    favicon {
+        file = EXT:festivo/Resources/Public/Icons/Circus.ico
+    }
+    menu.footerMenu = 3
+    menu.metaMenu = 15
+}
+

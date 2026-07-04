@@ -1,0 +1,2 @@
+@import 'EXT:festivo/Configuration/TypoScript/Setup/*.typoscript'
+@import 'EXT:festivo/Configuration/TypoScript/ContentElement/setup.typoscript'
