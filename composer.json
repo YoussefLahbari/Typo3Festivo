@@ -1,0 +1,26 @@
+{
+    "name": "app/festivo",
+    "type": "typo3-cms-extension",
+    "description": "Festivo: A showcase extension for local city festivals and cultural events.",
+    "license": "GPL-2.0-or-later",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Youssef Lahbari",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^14.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Festivo\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "festivo"
+        }
+    }
+}
