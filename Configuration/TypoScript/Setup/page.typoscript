@@ -46,11 +46,14 @@ page {
     # Inject CSS Assets
     includeCSS {
         theme = EXT:festivo/Resources/Public/Css/main.css
+        eventList = EXT:festivo/Resources/Public/Css/eventslist.css
+        searchbar = EXT:festivo/Resources/Public/Css/searchbar.css
     }
 
     # Inject JS Assets into the Footer
     includeJSFooter {
         app = EXT:festivo/Resources/Public/JavaScript/main.js
+        searchbar = EXT:festivo/Resources/Public/JavaScript/searchbar.js
     }     
     
 }

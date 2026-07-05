@@ -1,1 +1,0 @@
-console.log('Festivo Core loaded successfully!');

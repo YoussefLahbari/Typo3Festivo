@@ -1,0 +1,268 @@
+/* =========================================================
+   FESTIVO PORTAL — Searchbar, Tag filters & Icon circles
+   Covers: Searchbar.html, Tags.html, searchbar.js hooks
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --festivo-cream:      #FBF5EC;
+  --festivo-cream-deep: #F1E8D8;
+  --festivo-ink:        #221D2E;
+  --festivo-ink-soft:   #6B6478;
+  --festivo-teal:       #2F9E8F;
+  --festivo-teal-dark:  #1F7A6C;
+  --festivo-teal-tint:  #E4F3F0;
+  --festivo-gold:       #C98A2E;
+  --festivo-line:       #E7DDC9;
+  --festivo-white:      #FFFFFF;
+  --festivo-shadow:     0 12px 30px -10px rgba(34, 29, 46, 0.16);
+  --festivo-radius-lg:  22px;
+  --festivo-font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --festivo-font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ---------- Container ---------- */
+
+.event-searchbar {
+  font-family: var(--festivo-font-body);
+  background: var(--festivo-white);
+  border: 1px solid var(--festivo-line);
+  border-radius: var(--festivo-radius-lg);
+  box-shadow: var(--festivo-shadow);
+  padding: 18px 22px;
+  max-width: 780px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.event-searchbar * {
+  box-sizing: border-box;
+}
+
+.search-container {
+  display: block;
+}
+
+.filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.filter-item {
+  display: flex;
+  min-width: 0;
+}
+
+/* the search field is the flexible one; the tag row hugs its content
+   so the whole bar reads as a single centered line */
+.grid-item-search {
+  flex: 1 1 260px;
+}
+
+.grid-item-tech {
+  flex: 0 1 auto;
+}
+
+/* a lone search bar (no tags) can breathe a little wider */
+.no-tags .grid-item-search {
+  flex: 1 1 auto;
+}
+
+/* ---------- Search field ---------- */
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  background: var(--festivo-cream);
+  border: 1px solid var(--festivo-line);
+  border-radius: 999px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.search-field:focus-within {
+  border-color: var(--festivo-teal);
+  box-shadow: 0 0 0 3px var(--festivo-teal-tint);
+}
+
+.search-field__icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6478' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+}
+
+.search-field__input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--festivo-font-body);
+  font-size: 15px;
+  color: var(--festivo-ink);
+  padding: 13px 18px 13px 44px;
+}
+
+.search-field__input::placeholder {
+  color: var(--festivo-ink-soft);
+}
+
+/* ---------- Tag filter pills ---------- */
+
+.tech-buttons-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px 9px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--festivo-line);
+  background: var(--festivo-cream);
+  color: var(--festivo-ink);
+  font-family: var(--festivo-font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .15s ease;
+}
+
+.tech-button:hover {
+  border-color: var(--festivo-teal);
+  color: var(--festivo-teal-dark);
+}
+
+.tech-button:active {
+  transform: translateY(1px);
+}
+
+.tech-button.active,
+.tech-button[aria-pressed="true"] {
+  background: var(--festivo-teal);
+  border-color: var(--festivo-teal);
+  color: var(--festivo-white);
+}
+
+.tech-button:focus-visible {
+  outline: 3px solid var(--festivo-teal-dark);
+  outline-offset: 2px;
+}
+
+/* icon markup rendered by core:icon — keep it compact and aligned */
+.tech-button svg,
+.tech-button img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* tooltip span repurposed as an always-visible pill label */
+.tech-button-tooltip {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------- Icon circles (Tags.html / technology partial) ---------- */
+
+.technology-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.technology-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--festivo-white);
+  border: 1px solid var(--festivo-line);
+  box-shadow: var(--festivo-shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.technology-circle:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px -10px rgba(34, 29, 46, 0.25);
+}
+
+.technology-circle svg,
+.technology-circle img {
+  width: 28px;
+  height: 28px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .event-searchbar {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .filter-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grid-item-search,
+  .grid-item-tech {
+    flex: 1 1 100%;
+  }
+
+  .tech-buttons-grid {
+    justify-content: center;
+  }
+
+  .tech-button {
+    font-size: 12.5px;
+    padding: 8px 13px 8px 10px;
+  }
+
+  .technology-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .technology-circle svg,
+  .technology-circle img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-button,
+  .technology-circle,
+  .search-field {
+    transition: none;
+  }
+}
