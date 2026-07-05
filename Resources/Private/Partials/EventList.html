@@ -1,0 +1,38 @@
+<f:variable name="items" value="{references}" />
+<f:if condition="{events}">
+    <f:variable name="items" value="{events}" />
+</f:if>
+
+<f:if condition="{items -> f:count()} > 0">
+    <f:then>
+        <section class="event-list event-list--{f:if(condition: events, then: 'events', else: 'references')}">
+            <header class="event-list__header">
+                <div class="event-list__intro">
+                    <p class="event-list__eyebrow">Upcoming Events</p>
+                    <h2 class="event-list__title">Festivo lineup</h2>
+                    <p class="event-list__subtitle">A curated view of the next cultural highlights in Stuttgart.</p>
+                </div>
+
+                <div class="event-list__count">
+                    <span>{items -> f:count()}</span>
+                    <span>events</span>
+                </div>
+            </header>
+
+            <div class="event-list__grid">
+                <f:for each="{items}" as="item">
+                    <f:render partial="ContentElement/EventCard" arguments="{event: item}" />
+                </f:for>
+            </div>
+        </section>
+    </f:then>
+    <f:else>
+        <section class="event-list event-list--empty">
+            <div class="event-list__empty">
+                <p class="event-list__eyebrow">Upcoming Events</p>
+                <h2 class="event-list__title">No events found</h2>
+                <p class="event-list__subtitle">Try a different search or adjust the active filters.</p>
+            </div>
+        </section>
+    </f:else>
+</f:if>
