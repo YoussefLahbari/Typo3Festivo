@@ -1,5 +1,4 @@
 config {
-    contentObjectExceptionHandler = 0
     absRefPrefix = auto
     pageTitleFirst = 1
     pageTitleSeparator = -
