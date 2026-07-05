@@ -1,16 +1,17 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-    <header>
-        <h1>🎪 Welcome to Festivo Portal</h1>
-    </header>
-    <main class="content">
-        <section class="hero">
+    <f:render partial="Header" />
+
+    <main class="page-shell">
+        <section name="hero" class="page-shell__hero">
             <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: data.uid, colPos: 0}" />
         </section>
 
-        <section class="content">
+        <section name="content" class="page-shell__events">
             <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: data.uid, colPos: 1}" />
         </section>
     </main>
+
+    <f:render partial="Footer" />
 </f:section>
