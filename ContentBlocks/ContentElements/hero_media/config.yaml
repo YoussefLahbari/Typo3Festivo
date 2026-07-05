@@ -1,0 +1,20 @@
+name: app/festivo-hero-media
+group: Festivo
+prefixFields: true
+prefixType: full
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+fields:
+  - identifier: tagline
+    type: Text
+  - identifier: header
+    useExistingField: true
+  - identifier: details
+    type: Textarea
+  - identifier: button-label
+    type: Text
+  - identifier: button-link
+    type: Link
+  - identifier: image
+    type: File

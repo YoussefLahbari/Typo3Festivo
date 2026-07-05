@@ -1,0 +1,26 @@
+<f:asset.css identifier="content-block-festivo_hero_media" href="{cb:assetPath()}/frontend.css" />
+
+<div class="festivo-hero">
+    <f:if condition="{data.image.0}">
+        <div class="festivo-hero__media">
+            <f:image image="{data.image.0}" alt="{data.header}" />
+        </div>
+    </f:if>
+
+    <div class="festivo-hero__overlay"></div>
+
+    <div class="festivo-hero__content">
+        <p class="festivo-hero__eyebrow">{data.tagline}</p>
+        <h1>{data.header}</h1>
+        <p class="festivo-hero__text">{data.details}</p>
+
+        <f:if condition="{data.button-link}">
+            <f:link.typolink parameter="{data.button-link}" class="button">
+                <f:if condition="{data.button-label}">
+                    <f:then>{data.button-label}</f:then>
+                    <f:else>Explore the lineup</f:else>
+                </f:if>
+            </f:link.typolink>
+        </f:if>
+    </div>
+</div>
