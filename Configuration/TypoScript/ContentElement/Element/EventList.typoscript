@@ -1,0 +1,9 @@
+tt_content.list.20.festivo_eventlist = USER
+tt_content.list.20.festivo_eventlist {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = Festivo
+    pluginName = Eventlist
+    vendorName = App
+    controller = EventList
+    action = list
+}

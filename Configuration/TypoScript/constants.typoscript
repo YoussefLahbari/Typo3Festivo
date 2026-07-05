@@ -14,3 +14,4 @@ page {
     menu.metaMenu = 15
 }
 
+plugin.tx_festivo.settings.ajaxTypenum = 999999

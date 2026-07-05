@@ -1,0 +1,19 @@
+# AJAX List Configuration
+ajaxSearch = PAGE
+ajaxSearch {
+    typeNum = 999999
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Festivo
+        pluginName = AjaxSearch
+        vendorName = App
+        controller = Ajax
+        action = liveSearch
+    }
+
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:text/html; charset=utf-8
+    }
+}

@@ -1,0 +1,24 @@
+plugin.tx_festivo {
+    mvc.callDefaultActionIfActionCantBeResolved = 1
+
+    view {
+        templateRootPaths {
+            10 = {$plugin.tx_festivo.view.templateRootPath}
+            20 = EXT:festivo/Resources/Private/Templates/ContentElement/
+        }
+
+        partialRootPaths {
+            10 = {$plugin.tx_festivo.view.partialRootPath}
+            20 = EXT:festivo/Resources/Private/Partials/ContentElement/
+        }
+
+        layoutRootPaths {
+            10 = {$plugin.tx_festivo.view.layoutRootPath}
+            20 = EXT:festivo/Resources/Private/Layouts/ContentElement/
+        }
+    }
+
+    settings {
+        ajaxTypenum = {$plugin.tx_festivo.settings.ajaxTypenum}
+    }
+}
