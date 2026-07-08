@@ -17,7 +17,7 @@
         <p class="event-card__text">{event.subtitle}</p>
 
         <div class="event-card__meta">
-            <span class="event-card__location">{event.eventLocation}</span>
+            <span class="event-card__location">{event.location.0.title}</span>
             <f:if condition="{event.eventPrice}">
                 <strong class="event-card__price">{event.eventPrice}.00$</strong>
             </f:if>

@@ -37,6 +37,13 @@
                 <source>Title</source>
             </trans-unit>
 
+            <!-- tx_festivo_domain_model_location -->
+            <trans-unit id="tx_festivo_domain_model_location">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="tx_festivo_domain_model_location.title">
+                <source>City</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -19,7 +19,7 @@ return [
         'showRecordFieldList' => 'hidden, title',
     ],
     'types' => [
-        '1' => ['showitem' => 'hidden, archived, title, subtitle, event_date, event_location, event_price, tag, media'],
+        '1' => ['showitem' => 'hidden, archived, title, subtitle, event_date, location, event_price, tag, media'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -68,9 +68,22 @@ return [
                 'dbType' => 'datetime',
             ],
         ],
-        'event_location' => [
+        'location' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_event.event_location',
+            'label' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_event.location',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'tx_festivo_domain_model_location',
+                'foreign_table_where' => 'ORDER BY tx_festivo_domain_model_location.title ASC',
+                'size' => 1,
+                'minitems' => 1,
+                'maxitems' => 1,
+            ],
+        ],
+        'event_price' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_event.event_price',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

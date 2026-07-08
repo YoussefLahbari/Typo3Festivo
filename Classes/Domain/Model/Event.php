@@ -17,12 +17,15 @@ class Event extends AbstractEntity
      */
     protected $subtitle = '';
     protected ?\DateTime $eventDate = null;
-    protected $eventLocation = '';
     protected $eventPrice = '';
     /**
      * @var ObjectStorage<Tag>
      */
     protected ObjectStorage $tag;
+    /**
+     * @var ObjectStorage<Location>
+     */
+    protected ObjectStorage $location;
     /**
      * @var ObjectStorage<FileReference>
      */
@@ -76,14 +79,6 @@ class Event extends AbstractEntity
     {
         $this->eventDate = $eventDate;
     }
-    public function getEventLocation(): string
-    {
-        return $this->eventLocation;
-    }
-    public function setEventLocation(string $eventLocation): void
-    {
-        $this->eventLocation = $eventLocation;
-    }
     public function getEventPrice(): string
     {
         return $this->eventPrice;
@@ -99,6 +94,14 @@ class Event extends AbstractEntity
     public function setTag(ObjectStorage $tag): void
     {
         $this->tag = $tag;
+    }
+    public function getLocation(): ObjectStorage
+    {
+        return $this->location;
+    }
+    public function setLocation(ObjectStorage $location): void
+    {
+        $this->location = $location;
     }
     public function getMedia(): ObjectStorage
     {

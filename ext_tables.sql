@@ -4,6 +4,12 @@ CREATE TABLE tx_festivo_domain_model_tag (
     sorting int(11) DEFAULT '0' NOT NULL,
     PRIMARY KEY (uid),
 ); 
+CREATE TABLE tx_festivo_domain_model_location (
+    uid int(11) NOT NULL auto_increment,
+    title varchar(255) DEFAULT '' NOT NULL,
+    sorting int(11) DEFAULT '0' NOT NULL,
+    PRIMARY KEY (uid),
+); 
 CREATE TABLE tx_festivo_domain_model_event (
     uid int(11) NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -11,9 +17,9 @@ CREATE TABLE tx_festivo_domain_model_event (
     title varchar(255) DEFAULT '' NOT NULL,
     subtitle text DEFAULT '' NOT NULL,
     event_date datetime DEFAULT NULL,
-    event_location varchar(255) DEFAULT '' NOT NULL,
     event_price varchar(255) DEFAULT '' NOT NULL,
     tag int(11) DEFAULT '0' NOT NULL,
+    location int(11) DEFAULT '0' NOT NULL,
     media varchar(256) DEFAULT '' NOT NULL,
     sorting int(11) DEFAULT '0' NOT NULL,
     tstamp int(11) DEFAULT '0' NOT NULL,
