@@ -3,7 +3,6 @@ config {
     pageTitleFirst = 1
     pageTitleSeparator = -
     pageTitleSeparator.noTrimWrap = | | |
-    linkVars = L(int)
     doctype = html5
     debug = 0
     index_enable = 1
@@ -12,11 +11,6 @@ config {
     spamProtectEmailAddresses = 2
     spamProtectEmailAddresses_atSubst = (AT)
 
-    // Language Settings
-    sys_language_overlay = 1
-    sys_language_mode = content_fallback
-
-    // Compression and Concatenation of CSS and JS Files
     compressJs = {$config.compressJs}
     compressCss = {$config.compressCss}
     concatenateJs = {$config.concatenateJs}

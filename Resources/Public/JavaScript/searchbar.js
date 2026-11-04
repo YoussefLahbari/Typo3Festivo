@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tagButtons = Array.from(form.querySelectorAll('.tag-button'));
     const hiddenTagsInput = form.querySelector('#selected-tags');
+    const searchInput = form.querySelector('.search-field__input');
+    let debounceTimer = null;
 
     const syncButtonState = () => {
         const activeValue = hiddenTagsInput ? hiddenTagsInput.value : '';
@@ -56,8 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            window.clearTimeout(debounceTimer);
+            debounceTimer = window.setTimeout(submitFilters, 250);
+        });
+    }
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        window.clearTimeout(debounceTimer);
         submitFilters();
     });
 

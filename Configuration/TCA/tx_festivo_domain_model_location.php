@@ -1,11 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_location',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'delete' => 'deleted',
@@ -15,21 +17,21 @@ return [
         ],
         'searchFields' => 'title',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'title',
-    ],
     'types' => [
-        '1' => ['showitem' => 'title'],
+        '1' => [
+            'showitem' => 'title',
+        ],
     ],
     'columns' => [
-       'title' => [
+        'title' => [
             'exclude' => true,
             'label' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_location.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true,
             ],
-       ],
+        ],
     ],
 ];

@@ -1,24 +1,14 @@
-<html xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers" 
-xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
-data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="Main">
-
-    <f:render partial="Searchbar"
-        arguments="{tags: tags, search: search}" />
-    <f:comment>
-        <!-- CE: Showcase - Start -->
-    </f:comment>
+    <f:render partial="Searchbar" arguments="{tags: tags, search: search}" />
 
     <div id="ajaxCallResult">
         <f:render partial="EventList" arguments="{events: events}" />
     </div>
-    
-    <f:comment>
-        <!-- CE: Showcase - End -->
-    </f:comment>
 </f:section>
 
 </html>

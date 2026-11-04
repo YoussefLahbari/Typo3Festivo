@@ -1,5 +1,1 @@
-# Helper
 @import 'EXT:festivo/Configuration/TypoScript/ContentElement/Helper/*.typoscript'
-
-# Element
-@import 'EXT:festivo/Configuration/TypoScript/ContentElement/Element/*.typoscript'
