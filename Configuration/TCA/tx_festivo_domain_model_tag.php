@@ -1,18 +1,20 @@
 <?php
+
+declare(strict_types=1);
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:festivo/Resources/Private/Language/locallang_db.xlf:tx_festivo_domain_model_tag',
         'label' => 'title',
         'typeicon_column' => 'title',
         'typeicon_classes' => [
-            'music' => 'festivo_music',
-            'food' => 'festivo_food',
-            'art' => 'festivo_art',
-            'default' => 'festivo_default',
+            'music' => 'festivo-music',
+            'food' => 'festivo-food',
+            'art' => 'festivo-art',
+            'default' => 'festivo-music',
         ],
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'delete' => 'deleted',
@@ -22,11 +24,10 @@ return [
         ],
         'searchFields' => 'title',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'title',
-    ],
     'types' => [
-        '1' => ['showitem' => 'title'],
+        '1' => [
+            'showitem' => 'title',
+        ],
     ],
     'columns' => [
         'title' => [
@@ -39,18 +40,18 @@ return [
                     [
                         'label' => 'Music',
                         'value' => 'music',
-                        'icon' => 'festivo_music',
+                        'icon' => 'festivo-music',
                     ],
                     [
                         'label' => 'Food',
                         'value' => 'food',
-                        'icon' => 'festivo_food',
+                        'icon' => 'festivo-food',
                     ],
                     [
                         'label' => 'Art',
                         'value' => 'art',
-                        'icon' => 'festivo_art',
-                    ]
+                        'icon' => 'festivo-art',
+                    ],
                 ],
                 'fieldWizard' => [
                     'selectIcons' => [

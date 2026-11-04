@@ -1,55 +1,59 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Festivo\Domain\Model;
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 class Event extends AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $title = '';
-    /**
-     * @var string
-     */
-    protected $subtitle = '';
+    protected string $title = '';
+
+    protected string $subtitle = '';
+
     protected ?\DateTime $eventDate = null;
-    protected $eventPrice = '';
+
+    protected string $eventPrice = '';
+
     /**
      * @var ObjectStorage<Tag>
      */
     protected ObjectStorage $tag;
-    /**
-     * @var ObjectStorage<Location>
-     */
-    protected ObjectStorage $location;
+
+    protected ?Location $location = null;
+
     /**
      * @var ObjectStorage<FileReference>
      */
     protected ObjectStorage $media;
-    /**
-     * @var ObjectStorage<FileReference>
-     */
-    protected ObjectStorage $logo;
-    /**
-     * @var int
-     */
-    protected $archived = 0;
+
+    protected bool $archived = false;
 
     public function __construct()
     {
-        $this->tag = new ObjectStorage();
+        $this->initializeObject();
     }
 
-    public function getArchived(): int
+    public function initializeObject(): void
+    {
+        $this->tag = new ObjectStorage();
+        $this->media = new ObjectStorage();
+    }
+
+    public function isArchived(): bool
     {
         return $this->archived;
     }
 
-    public function setArchived(int $archived): void
+    public function getArchived(): bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): void
     {
         $this->archived = $archived;
     }
@@ -63,50 +67,74 @@ class Event extends AbstractEntity
     {
         $this->title = $title;
     }
+
     public function getSubtitle(): string
     {
         return $this->subtitle;
     }
+
     public function setSubtitle(string $subtitle): void
     {
         $this->subtitle = $subtitle;
     }
+
     public function getEventDate(): ?\DateTime
     {
         return $this->eventDate;
     }
+
     public function setEventDate(?\DateTime $eventDate): void
     {
         $this->eventDate = $eventDate;
     }
+
     public function getEventPrice(): string
     {
         return $this->eventPrice;
     }
+
     public function setEventPrice(string $eventPrice): void
     {
         $this->eventPrice = $eventPrice;
     }
+
+    /**
+     * @return ObjectStorage<Tag>
+     */
     public function getTag(): ObjectStorage
     {
         return $this->tag;
     }
+
+    /**
+     * @param ObjectStorage<Tag> $tag
+     */
     public function setTag(ObjectStorage $tag): void
     {
         $this->tag = $tag;
     }
-    public function getLocation(): ObjectStorage
+
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
-    public function setLocation(ObjectStorage $location): void
+
+    public function setLocation(?Location $location): void
     {
         $this->location = $location;
     }
+
+    /**
+     * @return ObjectStorage<FileReference>
+     */
     public function getMedia(): ObjectStorage
     {
         return $this->media;
     }
+
+    /**
+     * @param ObjectStorage<FileReference> $media
+     */
     public function setMedia(ObjectStorage $media): void
     {
         $this->media = $media;

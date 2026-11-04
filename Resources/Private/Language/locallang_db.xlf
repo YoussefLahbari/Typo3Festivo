@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2025-04-22" product-name="festivo">
-		<header/>
-		<body>
-            <!-- tx_festivo_domain_model_event -->
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-04-22" product-name="festivo">
+        <header/>
+        <body>
             <trans-unit id="tx_festivo_domain_model_event">
                 <source>Event</source>
-			</trans-unit>
-			<trans-unit id="tx_festivo_domain_model_event.archived">
-				<source>Archived</source>
-			</trans-unit>
+            </trans-unit>
+            <trans-unit id="tx_festivo_domain_model_event.archived">
+                <source>Archived</source>
+            </trans-unit>
             <trans-unit id="tx_festivo_domain_model_event.title">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="tx_festivo_domain_model_event.subtitle">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_festivo_domain_model_event.subtitle">
                 <source>Subtitle</source>
-			</trans-unit>
+            </trans-unit>
             <trans-unit id="tx_festivo_domain_model_event.tag">
-                <source>Tags (Max 1)</source>
+                <source>Tags</source>
             </trans-unit>
             <trans-unit id="tx_festivo_domain_model_event.event_date">
                 <source>Event Date</source>
             </trans-unit>
-            <trans-unit id="tx_festivo_domain_model_event.event_location">
+            <trans-unit id="tx_festivo_domain_model_event.location">
                 <source>Event Location</source>
             </trans-unit>
             <trans-unit id="tx_festivo_domain_model_event.event_price">
                 <source>Event Price</source>
             </trans-unit>
+            <trans-unit id="tx_festivo_domain_model_event.media">
+                <source>Media</source>
+            </trans-unit>
 
-            <!-- tx_festivo_domain_model_tag -->
             <trans-unit id="tx_festivo_domain_model_tag">
                 <source>Tag</source>
             </trans-unit>
@@ -37,14 +38,12 @@
                 <source>Title</source>
             </trans-unit>
 
-            <!-- tx_festivo_domain_model_location -->
             <trans-unit id="tx_festivo_domain_model_location">
                 <source>Location</source>
             </trans-unit>
             <trans-unit id="tx_festivo_domain_model_location.title">
                 <source>City</source>
             </trans-unit>
-		</body>
-	</file>
+        </body>
+    </file>
 </xliff>
-
