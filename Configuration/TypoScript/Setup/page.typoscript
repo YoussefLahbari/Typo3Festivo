@@ -1,5 +1,3 @@
-lib.searchForm = USER
-
 page = PAGE
 page {
     typeNum = 0
@@ -14,6 +12,7 @@ page {
         20.stdWrap.noTrimWrap = | class="|"|
         wrap = <body|>
     }
+
     10 = FLUIDTEMPLATE
     10 {
         templateName = TEXT
@@ -43,17 +42,13 @@ page {
         }
     }
 
-    # Inject CSS Assets
     includeCSS {
         theme = EXT:festivo/Resources/Public/Css/main.css
         eventList = EXT:festivo/Resources/Public/Css/eventslist.css
         searchbar = EXT:festivo/Resources/Public/Css/searchbar.css
     }
 
-    # Inject JS Assets into the Footer
     includeJSFooter {
-        app = EXT:festivo/Resources/Public/JavaScript/main.js
         searchbar = EXT:festivo/Resources/Public/JavaScript/searchbar.js
-    }     
-    
+    }
 }

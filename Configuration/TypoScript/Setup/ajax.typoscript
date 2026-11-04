@@ -1,4 +1,3 @@
-# AJAX List Configuration
 ajaxSearch = PAGE
 ajaxSearch {
     typeNum = 999999
@@ -14,6 +13,6 @@ ajaxSearch {
 
     config {
         disableAllHeaderCode = 1
-        additionalHeaders = Content-type:text/html; charset=utf-8
+        additionalHeaders.10.header = Content-Type: text/html; charset=utf-8
     }
 }

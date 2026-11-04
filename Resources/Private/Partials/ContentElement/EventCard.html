@@ -1,15 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
 <article class="event-card">
-    <f:if condition="{event.media}">
-        <f:then>
-            <div class="event-card__media">
+    <f:if condition="{event.media.0}">
+        <div class="event-card__media">
+            <f:if condition="{event.eventDate}">
                 <div class="event-card__date">
                     <span>{event.eventDate -> f:format.date(format: 'M')}</span>
                     <span>{event.eventDate -> f:format.date(format: 'd')}</span>
                 </div>
+            </f:if>
 
-                <f:image image="{event.media.0}" alt="{event.title}" class="event-card__media-image" />
-            </div>
-        </f:then>
+            <f:image image="{event.media.0}" alt="{event.title}" class="event-card__media-image" />
+        </div>
     </f:if>
 
     <div class="event-card__body">
@@ -17,23 +20,17 @@
         <p class="event-card__text">{event.subtitle}</p>
 
         <div class="event-card__meta">
-            <span class="event-card__location">{event.location.0.title}</span>
+            <f:if condition="{event.location}">
+                <span class="event-card__location">{event.location.title}</span>
+            </f:if>
             <f:if condition="{event.eventPrice}">
                 <strong class="event-card__price">{event.eventPrice}.00$</strong>
             </f:if>
         </div>
 
-        <f:if condition="{event.categories}">
-            <div class="event-card__taxonomies event-card__taxonomies--categories">
-                <f:for each="{event.categories}" as="category">
-                    <span class="event-card__taxonomy">{category.title}</span>
-                </f:for>
-            </div>
-        </f:if>
-
-        <f:if condition="{event.tags}">
+        <f:if condition="{event.tag}">
             <div class="event-card__taxonomies event-card__taxonomies--tags">
-                <f:for each="{event.tags}" as="tag">
+                <f:for each="{event.tag}" as="tag">
                     <span class="event-card__taxonomy">{tag.title}</span>
                 </f:for>
             </div>
@@ -42,3 +39,5 @@
         <a href="#" class="event-card__button">View Event</a>
     </div>
 </article>
+
+</html>
