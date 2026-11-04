@@ -7,7 +7,7 @@ A clean, modern event portal built from scratch as a TYPO3 (v12/v13 LTS) extensi
 ---
 
 ## Live Version (Real-World Example)
-I used this exact same architectural pattern—just with more complex database relationships and business logic—to build the live portfolio page for my company: **[Check out the live filter page here](https://www.schommer-media.de/referenzen)**
+I used this exact same architectural pattern—just with more complex database relationships and business logic—to build the live portfolio page for my current employer: **[Check out the live filter page here](https://www.schommer-media.de/referenzen)**
 
 ---
 
