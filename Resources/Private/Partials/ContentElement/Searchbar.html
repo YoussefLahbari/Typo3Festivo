@@ -1,33 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
 <f:if condition="{settings.showSearchbar}">
-  <div class="event-searchbar {f:if(condition: '{tags -> f:count()} > 0 && {settings.showTagsFilter}', then: 'with-tags', else: 'no-tags')}">
-      <f:form action="liveSearch" controller="Ajax" method="post" id="event_searchForm"
-          pageType="{settings.ajaxTypenum}">
-          <div class="search-container">
-              <div class="filter-grid">
+    <div class="event-searchbar {f:if(condition: '{tags -> f:count()} > 0 && {settings.showTagsFilter}', then: 'with-tags', else: 'no-tags')}">
+        <f:form action="liveSearch"
+                controller="Ajax"
+                pluginName="AjaxSearch"
+                method="post"
+                id="event_searchForm"
+                pageType="{settings.ajaxTypenum}">
+            <f:if condition="{settings.storagePid}">
+                <f:form.hidden name="search[storagePid]" value="{settings.storagePid}" />
+            </f:if>
+            <div class="search-container">
+                <div class="filter-grid">
+                    <div class="filter-item grid-item-search">
+                        <div class="search-field">
+                            <span class="search-field__icon" aria-hidden="true"></span>
+                            <f:form.textfield name="search[query]"
+                                              value="{search.query}"
+                                              class="search-field__input"
+                                              placeholder="Search for music, dance, theatre..." />
+                        </div>
+                    </div>
 
-                  <div class="filter-item grid-item-search">
-                      <div class="search-field">
-                          <span class="search-field__icon" aria-hidden="true"></span>
-                          <f:form.textfield name="search[query]" value="{search.query}" class="search-field__input" placeholder="Search for music, dance, theatre..."/>
-                      </div>
-                  </div>
-
-                  <f:if condition="{tags -> f:count()} > 0 && {settings.showTagsFilter}">
-                      <div class="filter-item grid-item-tech">
-                          <div class="tech-buttons-grid" role="list" aria-label="Event tags">
-                              <f:for each="{tags}" as="tag">
-                                  <button type="button" class="tech-button tag-button" data-value="{tag.uid}" aria-pressed="false">
-                                      <core:icon identifier="festivo-{tag.title}" size="medium" />
-                                      <span class="tech-button-tooltip">{tag.title}</span>
-                                  </button>
-                              </f:for>
-                          </div>
-                          <f:form.hidden name="search[tag]" value="{search.tag}" id="selected-tags" />
-                      </div>
-                  </f:if>
-
-              </div>
-          </div>
-      </f:form>
-  </div>
+                    <f:if condition="{tags -> f:count()} > 0 && {settings.showTagsFilter}">
+                        <div class="filter-item grid-item-tech">
+                            <div class="tech-buttons-grid" role="list" aria-label="Event tags">
+                                <f:for each="{tags}" as="tag">
+                                    <button type="button" class="tech-button tag-button" data-value="{tag.uid}" aria-pressed="false">
+                                        <core:icon identifier="festivo-{tag.title}" size="medium" />
+                                        <span class="tech-button-tooltip">{tag.title}</span>
+                                    </button>
+                                </f:for>
+                            </div>
+                            <f:form.hidden name="search[tag]" value="{search.tag}" id="selected-tags" />
+                        </div>
+                    </f:if>
+                </div>
+            </div>
+        </f:form>
+    </div>
 </f:if>
+
+</html>

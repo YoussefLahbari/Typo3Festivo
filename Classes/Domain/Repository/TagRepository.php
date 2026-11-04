@@ -1,64 +1,63 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Festivo\Domain\Repository;
 
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface;
-use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use App\Festivo\Domain\Model\Tag;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-
+/**
+ * @extends Repository<Tag>
+ */
 class TagRepository extends Repository
 {
-    public function initializeObject(): void
-    {
-        /** @var QuerySettingsInterface $querySettings */
-        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
-        $querySettings->setRespectStoragePage(false);
+    protected $defaultOrderings = [
+        'sorting' => QueryInterface::ORDER_ASCENDING,
+    ];
 
-        $this->setDefaultQuerySettings($querySettings);
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
+        parent::__construct();
     }
 
     /**
-     * Find only tags that are used in at least one event
-     *
-     * @return array
+     * @return list<Tag>
      */
-    public function findUsed()
+    public function findUsed(): array
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_festivo_domain_model_tag');
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_festivo_domain_model_tag');
 
-        $result = $queryBuilder
-            ->select('tag.title', 'tag.uid')
+        $usedTagUids = $queryBuilder
+            ->select('tag.uid')
             ->from('tx_festivo_domain_model_tag', 'tag')
-            ->join(
+            ->innerJoin(
                 'tag',
                 'tx_festivo_domain_model_event_tag_mm',
                 'mm',
-                $queryBuilder->expr()->eq('mm.uid_foreign', 'tag.uid')
+                $queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->quoteIdentifier('tag.uid'))
             )
-            ->join(
+            ->innerJoin(
                 'mm',
                 'tx_festivo_domain_model_event',
                 'event',
-                $queryBuilder->expr()->eq('mm.uid_local', 'event.uid')
+                $queryBuilder->expr()->eq('mm.uid_local', $queryBuilder->quoteIdentifier('event.uid'))
             )
-            ->where(
-                $queryBuilder->expr()->eq('event.deleted', 0)
-)
             ->groupBy('tag.uid')
-            ->orderBy('tag.sorting')
             ->executeQuery()
-            ->fetchAllAssociative();
+            ->fetchFirstColumn();
 
-        $tags = [];
-        foreach ($result as $row) {
-            $tags[] = $this->findByUid($row['uid']);
+        if ($usedTagUids === []) {
+            return [];
         }
 
-        return $tags;
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching($query->in('uid', array_map('intval', $usedTagUids)));
+
+        return $query->execute()->toArray();
     }
 }

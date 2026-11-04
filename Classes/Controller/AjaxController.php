@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Festivo\Controller;
 
 use App\Festivo\Domain\Repository\EventRepository;
@@ -9,26 +11,17 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 final class AjaxController extends ActionController
 {
     public function __construct(
-        protected EventRepository $eventRepository
-    ) {
-    }
+        protected readonly EventRepository $eventRepository
+    ) {}
 
-    public function liveSearchAction(): ResponseInterface
+    /**
+     * @param array<string, mixed> $search
+     */
+    public function liveSearchAction(array $search = []): ResponseInterface
     {
-        $searchCriteria = [];
-
-        if ($this->request->hasArgument('search')) {
-            $searchCriteria = (array)$this->request->getArgument('search');
-        } else {
-            $parsedBody = $this->request->getParsedBody();
-            $searchCriteria = (array)($parsedBody['tx_festivo_showcase']['search'] ?? $parsedBody['search'] ?? []);
-        }
-
-        $events = $this->eventRepository->findBySearchCriteria($searchCriteria);
-
         $this->view->assignMultiple([
-            'events' => $events,
-            'search' => $searchCriteria,
+            'events' => $this->eventRepository->findBySearchCriteria($search),
+            'search' => $search,
         ]);
 
         return $this->htmlResponse();
